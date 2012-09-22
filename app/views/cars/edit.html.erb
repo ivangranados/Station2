@@ -1,0 +1,30 @@
+<h1>Editar Auto</h1>
+<p>Ingresa los datos a modificar</p>
+<p><%= link_to "Regresar", root_path %></p>
+
+
+<%= form_for @car do |c| %>
+  <table>
+    <tr>
+        <th>Marca</th>
+        <td><%= c.text_field (:brand) %></td>
+    </tr>
+        <tr>
+        <th>Color</th>
+        <td><%= c.text_field (:color) %></td>
+    </tr>
+        <tr>
+        <th>Modelo</th>
+        <td><%= c.text_field (:model) %></td>
+    </tr>
+        <tr>
+        <th>Año</th>
+        <td><%= c.text_field (:year) %></td>
+    </tr>
+  </table>
+
+  <%= submit_tag("Editar Auto") %>
+
+
+<% end %>
+

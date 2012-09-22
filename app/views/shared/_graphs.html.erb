@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Station</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1');
+    </script>
+    <script type="text/javascript">
+      
+    </script>
+
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href=/>Tanking App</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href=/>Home</a></li>
+              <li><a href="#Graphs">Graphs</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+  <script type="text/javascript">
+      function drawVisualization() {
+        var wrapper = new google.visualization.ChartWrapper({
+          chartType: 'ColumnChart',
+          dataTable: [<%=raw @f_name_cost.flatten%>,
+                     <%= raw @f_cost.flatten %>],
+          options: {'title': 'Tanqueada mas Costosa'},
+          containerId: 'visualization'
+        });
+        wrapper.draw();
+      }
+      
+      
+
+      google.setOnLoadCallback(drawVisualization);
+    </script>
+    
+    </div> <!-- /container -->
+
+</body>
+</html>

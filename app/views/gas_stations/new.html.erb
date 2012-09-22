@@ -1,0 +1,31 @@
+<h1>Crear una GasStation</h1>
+<p><%= flash[:notice] %> </p>
+<p><%= link_to "Regresar", car_tanking_logs_path %></p>
+
+
+<%= form_for(:gas_station, :url => car_gas_stations_path(:id => params[:id])) do |c| %>
+  <table>
+    <tr>
+        <th>Nombre</th>
+        <td><%= c.text_field (:name) %></td>
+    </tr>
+  </table>
+
+  <%= submit_tag("Crear Nuevo Estacion") %>
+
+<h3>Estaciones</h3>
+<table class="table table-hover" width = 15% >
+	<thead>
+		<tr>
+			<th>Nombre</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @show.each do |stations| %>
+  		<tr>
+    		<td><%= stations.name %></td>
+  		</tr>
+	<% end %>
+	</tbody>
+</table>
+<% end %>

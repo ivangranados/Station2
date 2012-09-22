@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Station</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+<style type="text/css">
+        
+      body {
+        margin: 0; 
+        padding: 0; 
+        padding-top: 60px;
+        text-align: center; 
+      }
+
+      #centered
+    { 
+     width: 1200px; 
+     text-align: left;
+     border: 0px; 
+     padding: 0;  
+     margin: 0 auto; 
+    } 
+
+    </style>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href=/>Tanking App</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href=/>Home</a></li>
+              <%if user_signed_in?%>   
+              <li><%=link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
+              <% end %>
+              <li><%=link_to "Distance Calc", map_gmaps_path %></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div id="centered">
+      <div class="row">
+      <div class="span4 offset2"><%= yield %> </div>
+      <div class="span4 offset2"><%= image_tag("gas_pump.jpeg") %></div>
+    </div>
+    </div>
+    
+    
+</body>
+
+
+
+</html>

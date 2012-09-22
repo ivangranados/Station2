@@ -1,0 +1,32 @@
+<h1>Nuevo Tanqueo</h1>
+<p>Escriba los datos de su Nuevo Tanqueo en el siguiente formulario</p>
+<p><%= link_to "Regresar", car_tanking_logs_path %></p>
+
+<%= form_for @tanking_log, url: car_tanking_logs_path do |c| %>
+  <table>
+    <tr>
+    	<th>Costo</th>
+        <td><%= c.text_field (:cost) %></td>
+    </tr>
+    <tr>
+    	<th>Galones</th>
+        <td><%= c.text_field (:gallon) %></td>
+    </tr>
+    <tr>
+    	<th>Km</th>
+        <td><%= c.text_field (:km) %></td>
+    </tr>
+    <tr>
+    	<th>Fecha</th>
+        <td><%= c.date_select (:date) %></td>
+    </tr>
+    <tr>
+    	<th>Estación</th>
+        <td><%= select :tanking_log, :gas_station_id, @gas_stations %> </td>
+    </tr>
+  </table>
+
+  <%= submit_tag("Nuevo Tankeo") %>
+
+
+<% end %>

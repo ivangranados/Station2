@@ -1,0 +1,50 @@
+<h1>Tanking Log</h1>
+<% if !flash[:notice].blank? %>
+<div class="alert alert-success">
+<button type="button" class="close" data-dismiss="alert">×</button>
+<%= flash[:notice] %>
+</div> 
+<% end %>
+
+<table>
+	<tr>
+		<td><%= link_to "Regresar", root_path, {class:"btn btn-small btn-primary"}  %> </td>
+		<td><%= link_to "Nueva Estacion", new_car_gas_station_path,{class:"btn btn-small btn-primary"}  %></td>
+		<td><%= link_to "Registrar Tanqueo", new_car_tanking_log_path,{class:"btn btn-small btn-primary"}  %></td>
+	</tr>
+</table>
+
+
+
+<% if !@tanking_log.empty?%>
+	<%=render "shared/graphs"%>
+	<h3>Tankeos en orden cronologico</h3>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Costo</th>
+				<th>Galon</th>
+				<th>Km</th>
+				<th>Fecha</th>
+				<th>Estacion</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @tanking_log.each do |tanking_log| %>
+	  		<tr>
+			    <td><%= tanking_log.cost %></td>
+			    <td><%= tanking_log.gallon %></td>
+			    <td><%= tanking_log.km %></td>
+			    <td><%= tanking_log.date.strftime("%Y-%m-%d") %></td>
+			    <%- station = GasStation.find(tanking_log.gas_station_id) %>
+			    <td> <%=station.name %></td>
+	  		</tr>
+	  <% end %>
+	  	</tbody>
+	</table>
+	<h3>Informacion de Interes</h3>
+	<div id="visualization" style="width: 400px; height: 300px;"></div>
+<% else %>
+	<h4>No tienes ningun tanqueo aun, ingresa tus datos de tanqueo !!</h4>
+
+<% end %>
